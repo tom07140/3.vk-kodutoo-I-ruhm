@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown to things</title>
+  <script src="node_modules/time-to/jquery.time-to-js" type="text/javascript" charset="utf-8"></script>
+  <script src="node_modules/time-to/jquery.time-to.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="page.js" charset="utf-8"></script>
+  <link rel="stylesheet" type="text/css" href="page.css">
+</head>
+<body>
+  <h1>Add timers</h1>
+  <form>
+    <label for="description">Nimi: </label><br>
+    <input type="text" name="description" class="description"><br>
+    <label for="time">Aeg: </label><br>
+    <input type="date" name="time" class="time"><br>
+    <button class="add-new-timer">Lisa timer</button>
+  </form>
+  <h1>Countdown timers</h1>
+  <ul class="list-of-jars"></ul>
+  <script>
+    $('#countdown').timeTo(100,function(){ alert('Countdown finished');});
+  </script>
+</body>
