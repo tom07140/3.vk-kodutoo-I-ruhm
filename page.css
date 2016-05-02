@@ -26,9 +26,23 @@ background: -ms-linear-gradient(top, #ffffff 38%, #cccccc 100%); /* IE10+ */
 background: linear-gradient(to bottom, #ffffff 38%, #cccccc 100%); /* W3C */
  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc', GradientType=0 ); /* IE6-9 */
 }
+.timeTo figure {
+display: inline-block;
+margin: 0;
+padding: 0;
+}
+.timeTo figcaption {
+text-align: center;
+/*font-size: 12px;*/
+line-height: 80%;
+font-weight: normal;
+color: #888;
+}
 .timeTo div{
   position:relative;
   display:inline-block;
+  width:25px;
+  height:30px;
   border-top: 1px solid silver;
   border-right: 1px solid silver;
   border-bottom: 1px solid silver;
@@ -36,4 +50,16 @@ background: linear-gradient(to bottom, #ffffff 38%, #cccccc 100%); /* W3C */
 }
 .timeTo div.first{
   border-left: 1px solid silver;
+}
+.timeTo ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left:3px;
+}
+.timeTo ul li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
