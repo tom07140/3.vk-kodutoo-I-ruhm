@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Countdown to things</title>
-  <script src="node_modules/time-to/jquery.time-to-js" type="text/javascript" charset="utf-8"></script>
-  <script src="node_modules/time-to/jquery.time-to.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="page.js" charset="utf-8"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="jquery.time-to.min.js" type="text/javascript"></script>
+  <script src="jquery.time-to.js" type="text/javascript"></script>
+  <script src="page.js" type="text/javascript" charset="utf-8"></script>
   <link rel="stylesheet" type="text/css" href="page.css">
 </head>
 <body>
@@ -19,7 +20,7 @@
   </form>
   <h1>Countdown timers</h1>
   <ul class="list-of-jars"></ul>
-  <script>
-    $('#countdown').timeTo(100,function(){ alert('Countdown finished');});
-  </script>
+  <div id="countdown"></div>
+  <script>$('#countdown').timeTo(new Date('time'));</script>
 </body>
+<!--http://www.jqueryscript.net/time-clock/jQuery-Countdown-Timer-Digital-Clock-Plugin-timeTo.html-->

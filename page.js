@@ -96,7 +96,7 @@
 
   }; //MOOSIPURGI LÕPP
 
-  
+
 
   var Jar = function(new_title, new_ingredients){
     this.title = new_title;
