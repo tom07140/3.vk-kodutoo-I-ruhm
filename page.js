@@ -43,17 +43,36 @@
       //saan kätte purgid localStorage kui on
       if(localStorage.jars){
         //võtan stringi ja teen tagasi objektideks
-        this.jars = JSON.parse(localStorage.jars);
-        console.log('laadisin localStorageist massiivi ' + this.jars.length);
+        //this.jars = JSON.parse(localStorage.jars);
+        //console.log('laadisin localStorageist massiivi ' + this.jars.length);
 
         //tekitan loendi htmli
-        this.jars.forEach(function(jar){
+        this.createListFromArray(JSON.parse(localStorage.jars));
+        console.log('laadisin localStorageist');
 
-          var new_jar = new Jar(jar.title, jar.ingredients);
+      }else{
+        //ei olnud olemas, teen päringu serverisse
+        var xhttp = new XMLHttpRequest();
 
-          var li = new_jar.createHtmlElement();
-          document.querySelector('.list-of-jars').appendChild(li);
-        });
+        //vahetub siis kui toimub muutus ühenduses
+        xhttp.onreadystatechange = function( ){
+
+          console.log(xhttp.readyState);
+
+          //fail jõudis tervenisti kohale
+          if(xhttp.readyState == 4 && xhttp.status == 200){
+            var result = JSON.parse(xhttp.responseText);
+            //console.log(result);
+
+            Moosipurk.instance.createListFromArray(result);
+            console.log('laadisin serverist');
+
+          }
+
+        };
+        xhttp.open("GET", "saveData.php", true);
+        xhttp.send();
+
       }
 
       //kuulame hiireklikki nupul
@@ -66,12 +85,27 @@
 
     },
 
+    createListFromArray: function(arrayOfObjects){
+
+      this.jars = arrayOfObjects;
+
+      //tekitan loendi htmli
+      this.jars.forEach(function(jar){
+        var new_jar = new Jar(jar.description, jar.test);
+        var li = new_jar.createHtmlElement();
+        document.querySelector('.list-of-jars').appendChild(li);
+        $('#countdown').timeTo({
+          timeTo: new Date(jar.test)});
+      });
+
+    },
+
 
 
     addNewClick: function(event){
       //console.log(event);
       var title = document.querySelector('.description').value;
-      var ingredients = document.querySelector('.time').value;
+      var ingredients = document.querySelector('.test').value;
 
       //console.log(title + ' ' + ingredients);
       //1) tekitan uue Jar'i
@@ -86,7 +120,10 @@
 
        // 2) lisan selle htmli listi juurde
        var li = new_jar.createHtmlElement();
-       document.querySelector('.list-of-jars').appendChild(li);
+       //document.querySelector('.list-of-jars').appendChild(li);
+
+
+       console.log(ingredients);
 
     },
 
@@ -118,10 +155,7 @@
       var li = document.createElement('li');
 
       var span = document.createElement('span');
-      span.className = 'letter';
 
-      var letter = document.createTextNode(this.title.charAt(0));
-      span.appendChild(letter);
 
       li.appendChild(span);
 
